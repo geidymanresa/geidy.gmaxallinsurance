@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geidy Manresa | GMAX All Insurance</title>
+<meta name="description" content="Geidy Manresa - GMAX All Insurance. Cotiza tu seguro, contáctame y conoce la academia.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2D6E;
+    --gold:#EFAF3E;
+    --canvas:#F6F7FB;
+    --white:#FFFFFF;
+    --slate:#33415C;
+    --slate-light:#8B93A7;
+    --line:#E7EAF2;
+    --accent:var(--gold);
+    --font-heading:'Poppins', sans-serif;
+    --font-body:'Poppins', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:var(--font-body); background:var(--canvas); color:var(--slate); -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .gp-wrap{max-width:560px; margin:0 auto; padding:0 0 60px;}
+  .gp-hero{background:var(--navy); color:#fff; text-align:center; padding:44px 24px 60px; border-radius:0 0 28px 28px; display:flex; flex-direction:column; align-items:center;}
+  .gp-photo{width:150px; height:150px; object-fit:cover; border-radius:50%; border:4px solid rgba(255,255,255,0.85); background:#fff; margin:0 auto 16px; flex-shrink:0;}
+  .gp-photo-fallback{width:150px; height:150px; border-radius:50%; border:4px solid rgba(255,255,255,0.85); background:rgba(255,255,255,0.15); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; font-size:46px; font-weight:800; font-family:var(--font-heading); flex-shrink:0; color:#fff;}
+  @media (max-width:480px){
+    .gp-photo, .gp-photo-fallback{width:170px; height:170px;}
+  }
+  .gp-name{font-family:var(--font-heading); font-weight:800; font-size:24px; margin:0 0 4px;}
+  .gp-role{font-size:13.5px; letter-spacing:.04em; text-transform:uppercase; opacity:.85; margin:0;}
+  .gp-bio{margin:16px auto 0; max-width:420px; font-size:14.5px; line-height:1.6; opacity:.92;}
+  .gp-social{display:flex; justify-content:center; gap:12px; margin-top:18px; flex-wrap:wrap;}
+  .gp-social a{width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; text-decoration:none;}
+  .gp-social svg{width:18px; height:18px; fill:#fff;}
+  .gp-actions{padding:26px 20px 0; display:flex; flex-direction:column; gap:12px;}
+  .gp-btn{display:flex; align-items:center; justify-content:center; gap:10px; padding:15px 18px; border-radius:12px; font-weight:700; font-size:15px; text-decoration:none; border:none; cursor:pointer; font-family:var(--font-body);}
+  .gp-btn svg{width:19px; height:19px; flex-shrink:0;}
+  .gp-btn-primary{background:var(--accent); color:var(--navy);}
+  .gp-btn-outline{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .gp-section{padding:30px 20px 0;}
+  .gp-section h3{font-family:var(--font-heading); font-size:16px; margin:0 0 12px; color:var(--navy);}
+  .gp-course-card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; display:flex; align-items:center; gap:14px;}
+  .gp-course-card .gp-course-icon{width:46px; height:46px; border-radius:12px; background:var(--navy); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .gp-course-card .gp-course-icon svg{width:22px; height:22px; stroke:var(--accent);}
+  .gp-course-card .gp-course-text{flex:1;}
+  .gp-course-card .gp-course-text strong{display:block; color:var(--navy); font-size:14.5px; margin-bottom:2px;}
+  .gp-course-card .gp-course-text span{font-size:13px; color:var(--slate-light);}
+  .gp-course-card a.gp-course-link{font-size:13px; font-weight:700; color:var(--navy); text-decoration:underline; white-space:nowrap;}
+  .gp-qr{text-align:center; padding:36px 20px 0;}
+  .gp-qr img{width:150px; height:150px; border:1px solid var(--line); border-radius:10px; padding:8px; background:#fff;}
+  .gp-qr p{font-size:12px; color:var(--slate-light); margin-top:8px;}
+  footer.gp-footer{margin-top:40px; padding:24px 20px 0; text-align:center; font-size:12px; color:var(--slate-light); line-height:1.7;}
+  footer.gp-footer a{color:var(--navy); font-weight:700; text-decoration:none;}
+  @media (min-width:600px){
+    .gp-actions{flex-direction:row; flex-wrap:wrap;}
+    .gp-actions .gp-btn{flex:1; min-width:220px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="gp-wrap">
+  <div class="gp-hero">
+    <!--
+      Foto de perfil de Geidy: en cuanto ella la envíe, se guarda como
+      assets/geidy-photo.jpg (o el nombre que sea) y se pone esa ruta en el
+      src de abajo. Mientras no exista el archivo, el onerror oculta la
+      imagen y muestra el círculo con las iniciales "GM" automáticamente
+      — no hace falta tocar nada más cuando llegue la foto.
+    -->
+    <img id="gp-photo" class="gp-photo" src="assets/geidy-photo.jpg" alt="Geidy Manresa"
+         onerror="this.style.display='none'; document.getElementById('gp-photo-fallback').style.display='flex';">
+    <div id="gp-photo-fallback" class="gp-photo-fallback" style="display:none;">GM</div>
+
+    <h1 class="gp-name">Geidy Manresa</h1>
+    <p class="gp-role">GMAX All Insurance</p>
+
+    <div class="gp-social" id="gp-social">
+      <a href="https://www.instagram.com/geidymanresa?stkn=MXE5aXdjaDk0YnZzeg==" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.1 0 4.1.1 1 .1 1.7.2 2.3.5.6.2 1.1.6 1.6 1.1.5.5.8.9 1.1 1.6.2.6.4 1.3.5 2.3.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c-.1 1-.2 1.7-.5 2.3-.2.6-.6 1.1-1.1 1.6-.5.5-.9.8-1.6 1.1-.6.2-1.3.4-2.3.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1-.1-1.7-.2-2.3-.5-.6-.2-1.1-.6-1.6-1.1-.5-.5-.8-.9-1.1-1.6-.2-.6-.4-1.3-.5-2.3C2 15.1 2 14.7 2 12s0-3.1.1-4.1c.1-1 .2-1.7.5-2.3.2-.6.6-1.1 1.1-1.6.5-.5.9-.8 1.6-1.1.6-.2 1.3-.4 2.3-.5C8.9 2 9.3 2 12 2zm0 1.8c-2.6 0-3 0-4 .1-.9 0-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.8-.3 1.7-.1 1-.1 1.4-.1 4s0 3 .1 4c0 .9.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.8.3 1.7.3 1 .1 1.4.1 4 .1s3 0 4-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.8.3-1.7.1-1 .1-1.4.1-4s0-3-.1-4c0-.9-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.8-.3-1.7-.3-1-.1-1.4-.1-4-.1zm0 3.5a4.7 4.7 0 110 9.4 4.7 4.7 0 010-9.4zm0 1.8a2.9 2.9 0 100 5.8 2.9 2.9 0 000-5.8zm5-2a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/share/1CC8bjjodU/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>
+      </a>
+      <a href="https://youtube.com/@gmaxallinsurance?si=RpiCN21LbqRTaq2q" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@geidymanresa?_r=1&_t=ZT-99rlvSGXKQw" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.8a4.3 4.3 0 01-3-3.8h-3.1v13.7a2.6 2.6 0 11-2.1-2.5v-3.1a5.7 5.7 0 105 5.6V9.4a7.4 7.4 0 004.3 1.4V7.6a4.3 4.3 0 01-1.1-1.8z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/geidy-manresa-b18ba2298?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8.3 18.5H5.6V9.7h2.7v8.8zM7 8.6a1.6 1.6 0 110-3.2 1.6 1.6 0 010 3.2zm11.5 9.9h-2.7v-4.3c0-1 0-2.3-1.4-2.3s-1.7 1.1-1.7 2.3v4.3H10V9.7h2.6v1.2a2.9 2.9 0 012.6-1.4c2.8 0 3.3 1.8 3.3 4.2v4.8z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="gp-actions">
+    <a href="cotizar.html" class="gp-btn gp-btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      <span>Cotizar mi seguro</span>
+    </a>
+    <a href="https://wa.me/18324800217?text=Hola%2C%20te%20escribo%20desde%20tu%20p%C3%A1gina%20de%20GMAX." class="gp-btn gp-btn-outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8.9-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.2 1.5.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="mailto:geidy@gmaxallinsurance.com" class="gp-btn gp-btn-outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      <span>Escríbeme por correo</span>
+    </a>
+    <a href="#" id="gp-btn-vcard" class="gp-btn gp-btn-outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Regístrame contacto</span>
+    </a>
+  </div>
+
+  <div class="gp-section">
+    <h3>Cursos</h3>
+    <!--
+      TODO: cuando Geidy envíe el link de la academia, reemplazar el href="#"
+      de abajo por ese link (y quitar el target si prefiere que abra en la
+      misma pestaña).
+    -->
+    <div class="gp-course-card">
+      <div class="gp-course-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+      </div>
+      <div class="gp-course-text">
+        <strong>Academia GMAX</strong>
+        <span>Aprende y certifícate con nuestros cursos</span>
+      </div>
+      <a href="#" id="gp-academia-link" class="gp-course-link" target="_blank" rel="noopener">Ver cursos ↗</a>
+    </div>
+  </div>
+
+  <div class="gp-qr">
+    <img id="gp-qr-img" alt="Código QR de esta página">
+    <p>Escanea para abrir esta página</p>
+  </div>
+
+  <footer class="gp-footer">
+    <p>Términos y condiciones · Política de privacidad · Política de cookies<br>
+    La información que envíes por esta página se comparte únicamente con GMAX All Insurance para darle seguimiento a tu solicitud.</p>
+    <p><a href="https://gmaxallinsurance.com/" target="_blank" rel="noopener">gmaxallinsurance.com</a> · (832) 480-0217</p>
+    <p>Geidy Manresa es <a href="https://gmaxallinsurance.com/" target="_blank" rel="noopener">fundadora de GMAX All Insurance</a></p>
+  </footer>
+</div>
+
+<script>
+  // El "N" (nombre estructurado) y X-ABShowAs:INDIVIDUAL son necesarios para
+  // que el teléfono guarde esto como un contacto de PERSONA con el nombre de
+  // Geidy por delante, y no a nombre de "GMAX All Insurance".
+  (function(){
+    const name = 'Geidy Manresa';
+    const email = 'geidy@gmaxallinsurance.com';
+    const phone = '+18324800217';
+    const vcardEscape = s => (s || '').toString().replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,');
+    const nameParts = name.trim().split(/\s+/);
+    const lastName = nameParts.length > 1 ? nameParts.pop() : '';
+    const firstName = nameParts.join(' ');
+
+    const vcard = [
+      'BEGIN:VCARD', 'VERSION:3.0',
+      `N:${vcardEscape(lastName)};${vcardEscape(firstName)};;;`,
+      `FN:${vcardEscape(name)}`,
+      'ORG:GMAX All Insurance',
+      'X-ABShowAs:INDIVIDUAL',
+      `TEL;TYPE=CELL:${phone}`,
+      `EMAIL:${email}`,
+      `URL:${window.location.href}`,
+      'END:VCARD'
+    ].join('\r\n');
+
+    // Blob + URL.createObjectURL en vez de un "data:" URI — en varios
+    // navegadores de teléfono (sobre todo iPhone) un data: URI con
+    // "download" no dispara nada al tocarlo.
+    const vcardBlob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+    const vcardUrl = URL.createObjectURL(vcardBlob);
+    const vcardBtn = document.getElementById('gp-btn-vcard');
+    vcardBtn.href = vcardUrl;
+    vcardBtn.setAttribute('download', 'Geidy_Manresa.vcf');
+    vcardBtn.setAttribute('target', '_blank');
+
+    document.getElementById('gp-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(window.location.href);
+  })();
+</script>
+</body>
+</html>
