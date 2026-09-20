@@ -44,6 +44,7 @@
   .gp-btn svg{width:19px; height:19px; flex-shrink:0;}
   .gp-btn-primary{background:var(--accent); color:var(--navy);}
   .gp-btn-outline{background:#fff; color:var(--navy); border:1.5px solid var(--line);}
+  .gp-inapp-notice{background:#FFF7E6; border:1px solid #F3D48A; color:#7A5B12; font-size:13px; line-height:1.55; border-radius:10px; padding:12px 14px; margin:0;}
   .gp-section{padding:30px 20px 0;}
   .gp-section h3{font-family:var(--font-heading); font-size:16px; margin:0 0 12px; color:var(--navy);}
   .gp-course-card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; display:flex; align-items:center; gap:14px;}
@@ -127,6 +128,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span>Regístrame contacto</span>
     </a>
+    <p id="gp-inapp-notice" class="gp-inapp-notice" style="display:none;">
+      📲 Parece que estás viendo esta página dentro de una app (Instagram, TikTok, Facebook...), y esas apps no dejan guardar contactos. Toca los <strong>⋮</strong> o <strong>•••</strong> de arriba y elige <strong>"Abrir en el navegador"</strong> (Safari o Chrome), y ahí sí podrás tocar este botón.
+    </p>
   </div>
 
   <div class="gp-section">
@@ -169,6 +173,29 @@
   // celulares). Ahora apunta directo a un archivo .vcf real subido junto a
   // esta página (Geidy-Manresa.vcf), que ya trae su nombre, correo, teléfono,
   // "Insurance Agent" y su foto de perfil incluida dentro del contacto.
+
+  // Instagram, TikTok, Facebook y apps parecidas abren los links en su
+  // propio "navegador" reducido, que casi siempre bloquea la descarga de
+  // archivos — por eso "Regístrame contacto" no hace nada ahí, aunque en
+  // Safari/Chrome sí funcione. No hay forma de arreglar eso desde el código
+  // de la página (la app es quien lo bloquea); lo único que se puede hacer
+  // es avisarle a la persona que toque "Abrir en el navegador" desde el
+  // menú de esa app.
+  (function(){
+    const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+    const isInAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|Line\/|MicroMessenger|TikTok|BytedanceWebview|Snapchat/i.test(ua);
+    if(!isInAppBrowser) return;
+    const notice = document.getElementById('gp-inapp-notice');
+    const vcardBtn = document.getElementById('gp-btn-vcard');
+    if(notice) notice.style.display = 'block';
+    if(vcardBtn){
+      vcardBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if(notice) notice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  })();
+
   document.getElementById('gp-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(window.location.href);
 
   // ===================== MIS LICENCIAS =====================
