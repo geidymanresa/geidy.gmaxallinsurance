@@ -123,7 +123,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
       <span>Escríbeme por correo</span>
     </a>
-    <a href="#" id="gp-btn-vcard" class="gp-btn gp-btn-outline">
+    <a href="Geidy-Manresa.vcf" download="Geidy-Manresa.vcf" id="gp-btn-vcard" class="gp-btn gp-btn-outline">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span>Regístrame contacto</span>
     </a>
@@ -164,42 +164,12 @@
 </div>
 
 <script>
-  // El "N" (nombre estructurado) y X-ABShowAs:INDIVIDUAL son necesarios para
-  // que el teléfono guarde esto como un contacto de PERSONA con el nombre de
-  // Geidy por delante, y no a nombre de "GMAX All Insurance".
-  (function(){
-    const name = 'Geidy Manresa';
-    const email = 'geidy@gmaxallinsurance.com';
-    const phone = '+18324800217';
-    const vcardEscape = s => (s || '').toString().replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,');
-    const nameParts = name.trim().split(/\s+/);
-    const lastName = nameParts.length > 1 ? nameParts.pop() : '';
-    const firstName = nameParts.join(' ');
-
-    const vcard = [
-      'BEGIN:VCARD', 'VERSION:3.0',
-      `N:${vcardEscape(lastName)};${vcardEscape(firstName)};;;`,
-      `FN:${vcardEscape(name)}`,
-      'ORG:GMAX All Insurance',
-      'TITLE:Insurance Agent',
-      'X-ABShowAs:INDIVIDUAL',
-      `TEL;TYPE=CELL:${phone}`,
-      `EMAIL:${email}`,
-      `URL:${window.location.href}`,
-      'END:VCARD'
-    ].join('\r\n');
-
-    // Blob + URL.createObjectURL en vez de un "data:" URI — en varios
-    // navegadores de teléfono (sobre todo iPhone) un data: URI con
-    // "download" no dispara nada al tocarlo.
-    const vcardBlob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-    const vcardUrl = URL.createObjectURL(vcardBlob);
-    const vcardBtn = document.getElementById('gp-btn-vcard');
-    vcardBtn.href = vcardUrl;
-    vcardBtn.setAttribute('download', 'Geidy_Manresa.vcf');
-
-    document.getElementById('gp-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(window.location.href);
-  })();
+  // El botón "Regístrame contacto" ya no genera el archivo por JavaScript
+  // (blob:/data: URIs son poco confiables para guardar contactos en
+  // celulares). Ahora apunta directo a un archivo .vcf real subido junto a
+  // esta página (Geidy-Manresa.vcf), que ya trae su nombre, correo, teléfono,
+  // "Insurance Agent" y su foto de perfil incluida dentro del contacto.
+  document.getElementById('gp-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(window.location.href);
 
   // ===================== MIS LICENCIAS =====================
   // GEIDY_AGENT_ID: su ID de agente en el CRM (Mi Cuenta → Mis licencias →
