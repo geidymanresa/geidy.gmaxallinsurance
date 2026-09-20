@@ -180,18 +180,21 @@
   // Safari/Chrome sí funcione. No hay forma de arreglar eso desde el código
   // de la página (la app es quien lo bloquea); lo único que se puede hacer
   // es avisarle a la persona que toque "Abrir en el navegador" desde el
-  // menú de esa app.
+  // menú de esa app — y ese aviso solo debe aparecer si la persona de verdad
+  // toca el botón, no todo el tiempo.
   (function(){
     const ua = navigator.userAgent || navigator.vendor || window.opera || '';
     const isInAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|Line\/|MicroMessenger|TikTok|BytedanceWebview|Snapchat/i.test(ua);
     if(!isInAppBrowser) return;
     const notice = document.getElementById('gp-inapp-notice');
     const vcardBtn = document.getElementById('gp-btn-vcard');
-    if(notice) notice.style.display = 'block';
     if(vcardBtn){
       vcardBtn.addEventListener('click', function(e){
         e.preventDefault();
-        if(notice) notice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if(notice){
+          notice.style.display = 'block';
+          notice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
     }
   })();
