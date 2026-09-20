@@ -56,6 +56,12 @@
   .gp-license-card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap:10px; flex-wrap:wrap;}
   .gp-license-card .gp-st{font-weight:700; color:var(--navy);}
   .gp-license-card a{font-size:13px; font-weight:700; color:var(--navy); text-decoration:underline; white-space:nowrap;}
+  .gp-licenses-details{background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .gp-licenses-details summary{list-style:none; cursor:pointer; padding:16px 18px; font-family:var(--font-heading); font-weight:700; font-size:15.5px; color:var(--navy); display:flex; align-items:center; justify-content:space-between;}
+  .gp-licenses-details summary::-webkit-details-marker{display:none;}
+  .gp-licenses-details summary::after{content:'▾'; font-size:14px; color:var(--slate-light); transition:transform .2s;}
+  .gp-licenses-details[open] summary::after{transform:rotate(180deg);}
+  .gp-licenses-details > div{padding:0 18px 18px;}
   .gp-qr{text-align:center; padding:36px 20px 0;}
   .gp-qr img{width:150px; height:150px; border:1px solid var(--line); border-radius:10px; padding:8px; background:#fff;}
   .gp-qr p{font-size:12px; color:var(--slate-light); margin-top:8px;}
@@ -138,8 +144,10 @@
   </div>
 
   <div class="gp-section" id="gp-licenses-section" style="display:none;">
-    <h3>Mis licencias</h3>
-    <div id="gp-licenses-list"></div>
+    <details class="gp-licenses-details">
+      <summary>Ver mis licencias</summary>
+      <div id="gp-licenses-list"></div>
+    </details>
   </div>
 
   <div class="gp-qr">
@@ -189,7 +197,6 @@
     const vcardBtn = document.getElementById('gp-btn-vcard');
     vcardBtn.href = vcardUrl;
     vcardBtn.setAttribute('download', 'Geidy_Manresa.vcf');
-    vcardBtn.setAttribute('target', '_blank');
 
     document.getElementById('gp-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(window.location.href);
   })();
